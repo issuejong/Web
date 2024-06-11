@@ -1,0 +1,27 @@
+h1 {
+  border-bottom : solid gray 2px;
+  padding : 20px;
+  margin : 0px;
+  font-size: : 45px;
+  text-align: center;
+}
+
+ul{
+   border-right : solid gray 2px;
+   width : 100px;
+}
+
+li{
+  padding : 5px;
+  font-size: 20px;
+}
+
+#grid{
+  display : grid;
+  grid-template-columns: 150px 1fr;
+}
+
+a{
+  text-decoration: none;
+  color: black;
+}
