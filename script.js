@@ -1,7 +1,3 @@
-function atag(){
-  ab.setColor('red');
-}
-
 function before(name) {
   if(name === 'lilly')
     document.getElementById("introduction").innerHTML = "호주 빅토리아주 메리즈빌(Marysville)에서 태어나고 자랐다.";
@@ -45,5 +41,31 @@ function dance(name) {
     document.getElementById("introduction").innerHTML = "실력적인 면에서 파워가 넘쳐 팀 군무의 강렬함을 살려 준다. 코어 힘이 좋아 동작을 날리는 것 없이 잘 소화해 내고 정확하고 힘 있게 동작을 구현해 낸다.";
   else if(name === 'kyujin')
     document.getElementById("introduction").innerHTML = "상대적으로 구분되는 포지션은 메인댄서.[8] 팀 내 뿐만 아니라 4세대 걸그룹 중 최고의 실력을 가진 댄서로 평가받고 있다.";
+  
+}
+
+function nightmode(self)
+{
+  var atag = document.querySelectorAll("a");
+  var target = document.querySelector('body');
+  if(self.value === '야간 모드')
+  {
+    target.style.backgroundColor = 'black';
+    target.style.color = 'white';
+    self.value = '주간 모드';
+    
+   for(var i = 0; i < atag.length; i++)
+      atag[i].style.color = 'white';
+    
+  }
+  else if(self.value === '주간 모드')
+  {
+    target.style.backgroundColor = 'white';
+    target.style.color = 'black';
+    self.value = '야간 모드';
+    
+   for(var i = 0; i < atag.length; i++)
+      atag[i].style.color = 'black';
+  }
   
 }
