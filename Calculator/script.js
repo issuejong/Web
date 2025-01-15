@@ -1,29 +1,34 @@
 var Sum = 0;
-var tmp = "", ex_tmp = "", input = "";
+var tmp = "", ex_tmp = "", input = "", top_tmp = "";
 var op_idx = -1, ex_opidx = -1;
 var zero_error = false;
 
 $(document).ready(function(){
   
   //계산 함수
-  function calculation(i) {
-    if(tmp == "") tmp = Sum;
+  function calculation(i) 
+  {
+    if(tmp == "") tmp = Sum.toString();
     if(i == 0)
     {
       if(tmp == "0") zero_error = true;
-      else Sum /= parseInt(tmp);
+      else Sum /= parseFloat(tmp);
     }
-    else if(i == 1) Sum *= parseInt(tmp);
-    else if(i == 2) Sum -= parseInt(tmp);
-    else if(i == 3) Sum += parseInt(tmp);
-  }
+    else if(i == 1) Sum *= parseFloat(tmp);
+    else if(i == 2) Sum -= parseFloat(tmp);
+    else if(i == 3) Sum += parseFloat(tmp);
+  
+    // 10자리까지 반올림 (오류잡기)
+    Sum = parseFloat(Sum.toFixed(10));
+}
   
   //키보드 입력
   $(document).keydown(function(key){
     input = key.key;
-    if(input === "Enter") input = "=";
-    else if(input === "Delete") input = "CE";
-    else if(input === "Backspace") input = "<=";
+    if(input == "Enter") input = "=";
+    else if(input == "Delete") input = "CE";
+    else if(input == "Backspace") input = "<=";
+    else if(input == "*") input = "x";
     output(input);
   });
 
@@ -33,7 +38,7 @@ $(document).ready(function(){
     output(input);
   });
   
-  //입력 처리
+  //input 처리
   function output(input) {
     
     if("1" <= input && input <= "9")
@@ -72,29 +77,53 @@ $(document).ready(function(){
     else if(input == "/")
     {
       op_idx = 0;
-      if(tmp != "") Sum = parseInt(tmp);
-      $("#top")[0].value = "/ ";
+      if(Sum != 0)
+      {
+         calculation(op_idx);
+         tmp = "";
+      }
+      if(tmp != "") Sum = parseFloat(tmp);
+      top_tmp = Sum + " / ";
+      $("#top")[0].value = top_tmp;
       tmp = "";
     }
     else if(input == "x")
     {
       op_idx = 1;
-      if(tmp != "") Sum = parseInt(tmp);
-      $("#top")[0].value = "x ";
+      if(Sum != 0)
+      {
+         calculation(op_idx);
+         tmp = "";
+      }
+      if(tmp != "") Sum = parseFloat(tmp);
+      top_tmp = Sum + " x ";
+      $("#top")[0].value = top_tmp;
       tmp = "";
     }
     else if(input == "-")
     {
       op_idx = 2;
-      if(tmp != "") Sum = parseInt(tmp);
-      $("#top")[0].value = "- ";
+      if(Sum != 0)
+      {
+         calculation(op_idx);
+         tmp = "";
+      }
+      if(tmp != "") Sum = parseFloat(tmp);
+      top_tmp = Sum + " - ";
+      $("#top")[0].value = top_tmp;
       tmp = "";
     }
     else if(input == "+")
     {
       op_idx = 3;
-      if(tmp != "") Sum = parseInt(tmp);
-      $("#top")[0].value = "+ ";
+      if(Sum != 0)
+      {
+         calculation(op_idx);
+         tmp = "";
+      }
+      if(tmp != "") Sum = parseFloat(tmp);
+      top_tmp = Sum + " + ";
+      $("#top")[0].value = top_tmp;
       tmp = "";
     }
     else if(input == "00")
@@ -113,6 +142,15 @@ $(document).ready(function(){
         $("#display")[0].value = tmp;
       }
     }
+    else if(input == ".")
+    {
+      if(!tmp.includes(".")) 
+      {
+        if(tmp == "") tmp += "0.";
+        else tmp += ".";
+        $("#display")[0].value = tmp;
+      }
+    }
     else if(input == "=")
     {
       if(op_idx != -1)
@@ -125,7 +163,7 @@ $(document).ready(function(){
          $("#top")[0].value = "";
          zero_error = false;
       }
-      else if(ex_opidx != -1)
+      else
       {
         tmp = ex_tmp;
         calculation(ex_opidx);
