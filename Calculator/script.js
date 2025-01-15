@@ -18,8 +18,23 @@ $(document).ready(function(){
     else if(i == 3) Sum += parseInt(tmp);
   }
   
+  //키보드 입력
+  $(document).keydown(function(key){
+    input = key.key;
+    if(input === "Enter") input = "=";
+    else if(input === "Delete") input = "CE";
+    else if(input === "Backspace") input = "<=";
+    output(input);
+  });
+
+  //버튼 클릭
   $(".button").click(function(){
     input = $(this).val();
+    output(input);
+  });
+  
+  //입력 처리
+  function output(input) {
     
     if("1" <= input && input <= "9")
     {
@@ -28,12 +43,12 @@ $(document).ready(function(){
     }
     else if(input == "C")
     {
-      sum = 0;
+      Sum = 0;
       tmp = "";
       ex_tmp = "";
       ex_opidx = -1;
       $("#display")[0].value = "0";
-      $("top")[0].value = "";
+      $("#top")[0].value = "";
       op_idx = -1;
     }
     else if(input == "CE")
@@ -110,7 +125,7 @@ $(document).ready(function(){
          $("#top")[0].value = "";
          zero_error = false;
       }
-      else
+      else if(ex_opidx != -1)
       {
         tmp = ex_tmp;
         calculation(ex_opidx);
@@ -120,7 +135,5 @@ $(document).ready(function(){
         op_idx = -1;
         tmp = "";
     }
-    
-  })
-  
+  }
 })
