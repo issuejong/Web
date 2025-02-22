@@ -1,5 +1,6 @@
 $(document).ready(function(){
   
+  //생성
   $("#add").click(function(){
     input = $("input").val();
     var trClone = $("#default_plan").clone();
@@ -8,7 +9,8 @@ $(document).ready(function(){
     $("#plan_list").append(trClone);
   })
   
-  $(".del").click(function(){
-    $('td').parent().remove();
-  })
+  //on으로 동적 이벤트 생성하여 삭제하기
+  $(document).on('click', '.del', function() {
+    $(this).parent().remove();
+  });
 })
