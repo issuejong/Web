@@ -17,6 +17,13 @@ $(document).ready(function(){
     $(this).parent().remove();
   });
   
+  $(document).on('click', '.plan', function() {
+    if($(this).css("text-decoration") == "none solid rgb(0, 0, 0)")
+      $(this).css({"text-decoration":"line-through"});
+    else
+      $(this).css({"text-decoration":"none"});
+  });
+  
    //on으로 동적 이벤트 생성하여 hover 적용
    $(document).on('mouseenter', '.del', function() {
     $(this).css({"color":"blue"});
@@ -27,4 +34,5 @@ $(document).ready(function(){
   $(document).on('mouseleave', '.del', function() {
     $(this).css({"color":"red"});
   });
+
 })
