@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="todo_script.js"></script>
+    <link rel="stylesheet" href="todo_styles.css"/>
+  </head>
+  <body>
+    <div class="main">
+      <p id="top">To Do List</p>
+      <input type="text" id="input" placeholder="계획을 세워보세요">
+      <input type="button" id="add" value="+">
+    </div>
+    <div id="plans">
+      <table>
+        <tbody id="plan_list">
+          <tr id="default_plan" style="display:none">
+            <td class="plan"></td>
+            <td class="del">X</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

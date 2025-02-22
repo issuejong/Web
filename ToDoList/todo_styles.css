@@ -1,0 +1,55 @@
+*{
+  border-radius: 15px;  
+}
+
+body{
+  background-color: #c9ddff;
+}
+
+div{
+  width: 100%;
+  font-size: 50px;
+  text-align: center;
+  margin: 30px;
+}
+
+#plans{
+  display: flex;
+  justify-content: center;
+  font-size: 30px;
+}
+
+#top{
+  font-weight: bold;
+  margin: 0;
+}
+
+input{
+  font-size: 30px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+tr{
+  text-align: center;
+  font-size:30px;
+  padding: 10px;
+}
+
+td{
+  padding: 5px 10px 5px 10px;
+  border-bottom: 100px;
+}
+
+.plan{
+  width: 375px;
+  background-color: #ecf3ff;
+  text-align: left;
+}
+
+.del{
+  width: 60px;
+  text-align: center;
+  padding-left: 20px;
+  color: red;
+}
